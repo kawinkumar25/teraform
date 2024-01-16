@@ -1,37 +1,25 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-
-url = "https://registry.terraform.io/providers/hashicorp/aws/latest"
-
-# Set up the Chrome webdriver with headless option
-options = Options()
-options.add_argument('--headless')  # Run the browser in headless mode (no GUI)
-driver = webdriver.Chrome(options=options)
-
-# Load the webpage
-driver.get(url)
-
-# Add a delay to allow JavaScript to execute
-driver.implicitly_wait(5)  # You can adjust the wait time as needed
-
-# Use WebDriverWait to wait for the element to be present
-try:
-    version_element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//span[@class="provider-overview-metadata-content"]'))
-    )
-
-    # Extracting the version number
-    version_number = version_element.text.strip()
-    print(driver.page_source)
-
-    print(f"Version Number: {version_number}")
-except Exception as e:
-    print(f"Error: {e}")
-finally:
-    # Close the browser
-    driver.quit()
-
-# print("jii")
+import unittest
+from time import sleep
+class app_test_case(unittest.TestCase):
+    def setUp(self):
+        chromeOptions = webdriver.ChromeOptions()
+        driver_path = '/usr/local/bin/chromedriver'
+        chromeOptions.add_argument('--headless')
+        chromeOptions.add_argument('--disable-gpu')
+        chromeOptions.add_argument('--no-sandbox')
+        self.driver = webdriver.Chrome(driver_path, chrome_options=chromeOptions)
+        self.driver.implicitly_wait(30)
+        self.driver.maximize_window()
+        path = 'https://www.facebook.com/'
+        self.base_url = path
+    def test_i_d_e_script1(self):
+        driver = self.driver
+        driver.get(self.base_url)
+        get_title = driver.title
+        print(get_title)
+    def tearDown(self):
+        sleep(5)
+        self.driver.quit()
+if __name__ == "__main__":
+    unittest.main()
