@@ -18,7 +18,9 @@ class app_test_case(unittest.TestCase):
         self.driver = webdriver.Chrome(driver_path, chrome_options=chromeOptions)
         self.driver.implicitly_wait(30)
         self.driver.maximize_window()
-        path = 'https://registry.terraform.io/providers/hashicorp/aws/latest'
+        # path = 'https://registry.terraform.io/providers/hashicorp/aws/latest'
+        path = 'https://google.com'
+
         self.base_url = path
 
     def test_i_d_e_script1(self):
