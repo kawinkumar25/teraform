@@ -11,6 +11,8 @@ class app_test_case(unittest.TestCase):
         chromeOptions.add_argument('--headless')
         chromeOptions.add_argument('--disable-gpu')
         chromeOptions.add_argument('--no-sandbox')
+        chromeOptions.add_argument("--enable-javascript")
+
 
 
         self.driver = webdriver.Chrome(driver_path, chrome_options=chromeOptions)
