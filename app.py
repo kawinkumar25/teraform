@@ -25,6 +25,8 @@ class app_test_case(unittest.TestCase):
 
         get_title = driver.title
         print(get_title)
+        print(driver.page_source)
+
 
 
     def tearDown(self):
